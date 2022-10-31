@@ -27,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
         initComponents();
         updateComponents();
     }
+    // Does the elementary row interchange operation for the given rows
+    public void rowInterchange(int a, int b) {
+        int cols = Integer.parseInt(((EditText)findViewById(R.id.resolutionColumns_EditTextNumber)).toString());
+        int rows = Integer.parseInt(((EditText)findViewById(R.id.resolutionRows_EditTextNumber)).toString());
+    }
 
     // processClick is going to be executed after the click event on both buttons
     public void processClick(View v) {
