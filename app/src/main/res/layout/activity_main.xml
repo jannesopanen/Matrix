@@ -1116,8 +1116,8 @@
         android:layout_height="41dp"
         android:layout_marginStart="32dp"
         android:backgroundTint="#7EA8F1"
-        android:text="Compute"
         android:onClick="processClick"
+        android:text="Compute"
         android:textSize="8sp"
         app:layout_constraintBottom_toTopOf="@+id/divider2"
         app:layout_constraintStart_toStartOf="parent" />

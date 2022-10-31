@@ -8,6 +8,7 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 
 
+import android.util.Log;
 import android.view.View;
 
 import android.widget.EditText;
@@ -29,8 +30,17 @@ public class MainActivity extends AppCompatActivity {
     }
     // Does the elementary row interchange operation for the given rows
     public void rowInterchange(int a, int b) {
-        int cols = Integer.parseInt(((EditText)findViewById(R.id.resolutionColumns_EditTextNumber)).toString());
-        int rows = Integer.parseInt(((EditText)findViewById(R.id.resolutionRows_EditTextNumber)).toString());
+        int col = Integer.parseInt(((EditText)findViewById(R.id.resolutionColumns_EditTextNumber)).getText().toString());
+        int row = Integer.parseInt(((EditText)findViewById(R.id.resolutionRows_EditTextNumber)).getText().toString());
+        int[] tempArray = new int[col];
+
+        for (int i = 0; i < col; i++) {
+            // grab element from the row b to temp storage
+            tempArray[i] = Integer.parseInt(inputTexts[b][i].getText().toString());
+            inputTexts[b][i].setText((inputTexts[a][i].getText().toString()));
+            inputTexts[a][i].setText(String.valueOf(tempArray[i]));
+        }
+
     }
 
     // processClick is going to be executed after the click event on both buttons
@@ -46,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         // refresh after any changes
         updateComponents();
+        rowInterchange(0, 4);
     }
 
 
