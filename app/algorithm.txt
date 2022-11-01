@@ -1,0 +1,27 @@
+im going to introduce first the ref algorithm, also known as the gaussian row reduction algorithm.
+and then in part 2, to get the matrix to the rref form, the gauss-jordan method is used. im going to
+refer each cell of the matrix A, for example e
+                                              (m)(n)
+, for example cell at row five and at column 2 is denoted as 'e(5)(2)'
+
+i define a arbitrary matrix A with columns and rows as m x n.
+
+2.  set column and row counter counters both to 1, and call them respectively as c, and r.
+
+1.  set float k = 1/e(r)(c),
+
+2.  we know e(1)(r) equals one, so we do not have to compute that, simply we let e(1)(r) be 1.
+
+3.  next we multiply the rest of the row r by k.
+
+
+
+
+for (c = 0; c < colCount; c++) {
+    float k = 1 / matrix[c][r];
+    matrix[c][r] = 1;
+
+    for (r = 0; r < rowCount; r++) {
+
+    }
+}

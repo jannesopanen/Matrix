@@ -22,7 +22,10 @@ public class Matrix {
 
     }
 
-    public Matrix(int rowCount, int columnCount, EditText[][] inputEditTexts) {
+    public Matrix(EditText[][] inputEditTexts) {
+        int rowCount = inputEditTexts.length;
+        int columnCount = inputEditTexts[0].length;
+
         if (rowCount <= MAXROWS) this.mMatRows = rowCount;
         else this.mMatRows = DEFAULTROWCOUNT;
         if (columnCount <= MAXCOLUMNS) this.mMatColumns = columnCount;
@@ -34,9 +37,11 @@ public class Matrix {
             }
         }
     }
-    // overload, data input using int array
-    public Matrix(int rowCount, int columnCount, int[][] inputCells) {
 
+    // overload, data input using int array
+    public Matrix(int[][] inputCells) {
+        int rowCount = inputCells.length;
+        int columnCount = inputCells[0].length;
     }
 
     // return the count of the rows
@@ -53,4 +58,6 @@ public class Matrix {
     {
         return this.mData[rowCount][columnCount];
     }
+
+
 }
