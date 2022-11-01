@@ -8,16 +8,15 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 
 
-import android.util.Log;
 import android.view.View;
 
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
-    final protected int MATRIXCELLFIELDCOUNT = 5;
+    final protected int MAXMATRIXCELLFIELDCOUNT = 5;
 
-    EditText[][] inputTexts = new EditText[MATRIXCELLFIELDCOUNT][MATRIXCELLFIELDCOUNT];
-    EditText[][] resultTexts = new EditText[MATRIXCELLFIELDCOUNT][MATRIXCELLFIELDCOUNT];
+    EditText[][] inputTexts = new EditText[MAXMATRIXCELLFIELDCOUNT][MAXMATRIXCELLFIELDCOUNT];
+    EditText[][] resultTexts = new EditText[MAXMATRIXCELLFIELDCOUNT][MAXMATRIXCELLFIELDCOUNT];
 
 
     @Override
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Does the elementary row interchange operation for the given rows
-    public void rowInterchange(int a, int b) {
+    protected void rowInterchange(int a, int b) {
         int cols = Integer.parseInt(((EditText)findViewById(R.id.resolutionColumns_EditTextNumber)).getText().toString());
         float[] tempArray = new float[cols];
         for (int i = 0; i < cols; i++) {
@@ -42,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Does the elementary row multiply operation for the given row. 'a' as the multiplier and 'b' as the row index number
-    public void rowMultiply(float k, int b) {
-        if ((b >= 0) && (b <= MATRIXCELLFIELDCOUNT)) {
+    protected void rowMultiply(float k, int b) {
+        if ((b >= 0) && (b <= MAXMATRIXCELLFIELDCOUNT)) {
             int cols = Integer.parseInt(((EditText)findViewById(R.id.resolutionColumns_EditTextNumber)).getText().toString());
             for (int i = 0; i < cols; i++) {
                 float f = k * Float.parseFloat((inputTexts[b][i].getText().toString()));
@@ -54,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Does the elementary row coefficient addition operation for the given row.
     // The function calculates a = a + bk
-    public void rowAddition(float k, int a, int b) {
+    protected void rowAddition(float k, int a, int b) {
         int cols = Integer.parseInt(((EditText)findViewById(R.id.resolutionColumns_EditTextNumber)).getText().toString());
         float bf[] = new float[cols];       // temporarily for row 'b'
         for (int i = 0; i < cols; i++) {
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // processClick is going to be executed after the click event on both buttons
-    public void processClick(View v) {
+    protected void processClick(View v) {
         if (R.id.computeButton == v.getId()) {
         } else if (R.id.clearButton == v.getId()) {
             for (int i = 0; i < 5; i++)
@@ -83,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // Grab data from the fields and place them to arrays.
-    private void initComponents() {
+    protected void initComponents() {
         // the worst way of doing things..
         // i bind the fields to an array for more efficient usage, here for the result text fields
         resultTexts[0][0] = (EditText) findViewById(R.id.outputr1c1_editTextNumber); resultTexts[1][0] = (EditText) findViewById(R.id.outputr2c1_editTextNumber);
@@ -139,18 +138,18 @@ public class MainActivity extends AppCompatActivity {
         int cols = Integer.parseInt(((EditText)findViewById(R.id.resolutionColumns_EditTextNumber)).getText().toString());
 
         // if rows or columns are not in their boundaries, set 'rows' and 'cols to MAXCELLFIELDCOUNT and fix their respective field values
-        if ((rows < 1) || (rows > MATRIXCELLFIELDCOUNT)) {
-            rows = MATRIXCELLFIELDCOUNT;
-            ((EditText) findViewById(R.id.resolutionRows_EditTextNumber)).setText(String.valueOf(MATRIXCELLFIELDCOUNT));
+        if ((rows < 1) || (rows > MAXMATRIXCELLFIELDCOUNT)) {
+            rows = MAXMATRIXCELLFIELDCOUNT;
+            ((EditText) findViewById(R.id.resolutionRows_EditTextNumber)).setText(String.valueOf(MAXMATRIXCELLFIELDCOUNT));
         }
-        if ((cols < 1) || (cols > MATRIXCELLFIELDCOUNT)) {
-            cols = MATRIXCELLFIELDCOUNT;
-            ((EditText) findViewById(R.id.resolutionColumns_EditTextNumber)).setText(String.valueOf(MATRIXCELLFIELDCOUNT));
+        if ((cols < 1) || (cols > MAXMATRIXCELLFIELDCOUNT)) {
+            cols = MAXMATRIXCELLFIELDCOUNT;
+            ((EditText) findViewById(R.id.resolutionColumns_EditTextNumber)).setText(String.valueOf(MAXMATRIXCELLFIELDCOUNT));
         }
 
         // runs over both the result and the input matrix, changes their bg colors depending their status (outside dimensions/inside dimensions)
-        for (int i = 0; i < MATRIXCELLFIELDCOUNT; i++)
-            for (int j = 0; j < MATRIXCELLFIELDCOUNT; j++) {
+        for (int i = 0; i < MAXMATRIXCELLFIELDCOUNT; i++)
+            for (int j = 0; j < MAXMATRIXCELLFIELDCOUNT; j++) {
                 if ((j < cols) && (i < rows)) {
                     // if the cell is enabled
                     inputTexts[i][j].setEnabled(true);

@@ -3,48 +3,54 @@
 // For RREF form, the Gauss-Jordan algorithm is used and for the REF form, the Gaussian algorithm is used.
 // To get a matrix to the RREF form, Gaussian algorithm is first used to bring it to REF form.
 
-
 package fi.binaryiris.matrix;
 import android.widget.EditText;
-
 public class Matrix {
-// hard boundaries
-final protected int MAXROWS = 10;
-final protected int MAXCOLUMNS = 10;
-final protected int DEFAULTCOLUMNCOUNT = 5;
-final protected int DEFAULTROWCOUNT = 5;
+    // hard boundaries
+    final protected int MAXROWS = 10;
+    final protected int MAXCOLUMNS = 10;
+    final protected int DEFAULTCOLUMNCOUNT = 5;
+    final protected int DEFAULTROWCOUNT = 5;
 
-// member variables
-private int matRows;
-private int matColumns;
-private int[][] data;
+    // member variables
+    private int mMatRows;
+    private int mMatColumns;
+    private int[][] mData;
 
-    // default constructor. if the given dimension fails, the hardcoded MAX values are used
+    // default constructor, default hardcoded values are used
+    public Matrix() {
+
+    }
+
     public Matrix(int rowCount, int columnCount, EditText[][] inputEditTexts) {
-        if (rowCount <= MAXROWS) this.matRows = rowCount; else this.matRows = DEFAULTROWCOUNT;
-        if (columnCount <= MAXCOLUMNS) this.matColumns = columnCount; else this.matColumns =  DEFAULTCOLUMNCOUNT;
-        data = new int[matRows][matColumns];
-
-        for (int i = 0; i < matColumns; i++) {
-            for (int j = 0; j <  matRows; j++) {
-                inputEditTexts[i][j].setText(String.valueOf(i)+"!"+String.valueOf(j));
+        if (rowCount <= MAXROWS) this.mMatRows = rowCount;
+        else this.mMatRows = DEFAULTROWCOUNT;
+        if (columnCount <= MAXCOLUMNS) this.mMatColumns = columnCount;
+        else this.mMatColumns = DEFAULTCOLUMNCOUNT;
+        mData = new int[mMatRows][mMatColumns];
+        for (int i = 0; i < mMatColumns; i++) {
+            for (int j = 0; j < mMatRows; j++) {
+                inputEditTexts[i][j].setText(String.valueOf(i) + "!" + String.valueOf(j));
             }
         }
+    }
+    // overload, data input using int array
+    public Matrix(int rowCount, int columnCount, int[][] inputCells) {
 
     }
 
     // return the count of the rows
-    public int getMatRows() {
-        return this.matRows;
+    public int getmMatRows() {
+        return this.mMatRows;
     }
 
     // return the count of columns
-    public int getMatColumns() {
-        return this.matColumns;
+    public int getmMatColumns() {
+        return this.mMatColumns;
     }
 
     public int readCell(int rowCount, int columnCount)
     {
-        return this.data[rowCount][columnCount];
+        return this.mData[rowCount][columnCount];
     }
 }
